@@ -10,6 +10,10 @@ import Foundation
 
 struct ReadingListModel {
     var title: String
+    
+    // image
+    let image: String
+    
     let purpose: String?
     let highlights: [String]?
     let actionableTakeways: [String]?

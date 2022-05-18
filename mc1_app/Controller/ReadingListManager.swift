@@ -10,7 +10,7 @@ import Foundation
 
 struct ReadingListManager {
     
-    
+    // array of Reading model
     
     
     
