@@ -8,13 +8,13 @@
 import Foundation
 
 
-struct ReadingList {
+struct ReadingList{
+//    var id: ObjectIdentifier
+    
     var title: String
-    
     // image
-    let image: String
-    
-    let purpose: String?
-    let highlights: [String]?
-    let actionableTakeways: [String]?
+    var image: String
+    var purpose: String?
+    var highlights: [String]?
+    var actionableTakeways: [String]?
 }

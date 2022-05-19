@@ -11,10 +11,10 @@ struct Dashboard: View {
     @State private var searchQuery = ""
     
     @State var readingList: [ReadingList] = [
-        ReadingList(title: "Test", image: "Test", purpose: "Test", highlights: ["Test"], actionableTakeways: ["Test"]),
-        ReadingList(title: "Test", image: "Test", purpose: "Test", highlights: ["Test"], actionableTakeways: ["Test"]),
-        ReadingList(title: "Test", image: "Test", purpose: "Test", highlights: ["Test"], actionableTakeways: ["Test"]),
-        ReadingList(title: "Test", image: "Test", purpose: "Test", highlights: ["Test"], actionableTakeways: ["Test"])
+        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
+        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
+        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
+        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""])
     ]
     
     
@@ -27,59 +27,17 @@ struct Dashboard: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(0..<10) { i in
+                    ForEach(0..<10) { card in
                         Section {
-                            HStack(spacing: 0) {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text("Atomic Habit")
-                                        .font(.title3)
-                                    
-                                    Spacer()
-    
-                                    Text("James Clear")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                    
-                                    Spacer()
-                                    
-                                    HStack(spacing: 5){
-                                        TagView(tagText: "Self Improvement", tagColor: Color.purple)
-                                        TagView(tagText: "+10", tagColor: Color.secondary)
-                                        Spacer()
-                                    }
-                                    
-                                    Spacer()
-                                    Text("Insight 💡")
-                                        .font(.subheadline)
-                                    
-                                    
-                                    Spacer()
-                                    // this is insight preview
-                                    Text("\"Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan\"")
-                                        .font(.body.italic())
-                                        .lineLimit(2)
-                                    
-                                }
-                                
-                                VStack {
-                                    Image("atomic_habbit")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 70)
-                                    
-                                    Spacer()
-                                    
-                                    Button {
-                                        // go to detail view
-                                        print("Go to detail view")
-                                    } label: {
-                                        Text("See all")
-                                            .font(.footnote)
-                                    }
-                                } .frame(width: UIScreen.main.bounds.width * 0.2)
-                            }
-                            .padding(.vertical, 16)
-                        } .frame(height: 200)
+                            BookCard()
+                                .padding(.vertical, 16)
+                        }
+                        .frame(height: 200)
+                        .overlay(
+                            NavigationLink(destination: ReadingDetail(), label: {
+                                EmptyView()
+                            })
+                        )
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
@@ -112,20 +70,66 @@ struct Dashboard: View {
     }
 }
 
+
 struct BookCard: View {
     var body: some View {
-        Text("")
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Atomic Habit")
+                    .font(.title3)
+                
+                Spacer()
+                
+                Text("James Clear")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                HStack(spacing: 5){
+                    TagView(tagText: "Self Improvement", tagColor: Color.purple)
+                    TagView(tagText: "+10", tagColor: Color.secondary)
+                    Spacer()
+                }
+                
+                Spacer()
+                Text("Insight 💡")
+                    .font(.subheadline)
+                
+                
+                Spacer()
+                // this is insight preview
+                Text("\"Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan\"")
+                    .font(.body.italic())
+                    .lineLimit(2)
+                
+            }
+            
+            VStack {
+                Image("atomic_habit")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 70)
+                
+                Spacer()
+                
+                Button {
+                    // go to detail view
+                    print("Go to detail view")
+                } label: {
+                    Text("See all")
+                        .font(.footnote)
+                }
+            } .frame(width: UIScreen.main.bounds.width * 0.2)
+        }
     }
 }
-
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard()
     }
 }
-
-
 
 struct ExtractedView: View {
     var body: some View {
@@ -150,7 +154,6 @@ struct ExtractedView: View {
         }
     }
 }
-
 
 struct TagView: View {
     let tagText: String
