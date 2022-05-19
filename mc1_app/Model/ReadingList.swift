@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ReadingListModel {
+struct ReadingList {
     var title: String
     
     // image
