@@ -9,27 +9,22 @@ import SwiftUI
 
 struct Dashboard: View {
     @State private var searchQuery = ""
-
-    @State var readingLists: [ReadingList] = [
-        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
-        ReadingList(title: "Sapiens", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
-        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
-        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""])
-    ]
+    
+    @State var readingListManager = ReadingListManager()
+    @State var showReadingForm: Bool = false
     
     
     init() {
         UITableView.appearance().sectionFooterHeight = 0
-        
     }
     
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(readingLists) { readingList in
+                    ForEach(readingListManager.readingLists) { readingList in
                         Section {
-                            BookCard(bookTitle: readingList.title)
+                            BookCardView(bookTitle: readingList.title)
                                 .padding(.vertical, 16)
                         }
                         .frame(height: 200)
@@ -54,80 +49,38 @@ struct Dashboard: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Button {
-                            // add reading list
-                            print("Add reading list pressed")
-                        } label: {
-                            Text("add")
-                        }
+                    Button {
+                        
+                        let newReadingList: ReadingListModel = ReadingListModel(title: "Test Only", image: "atomic_habit", purpose: "test", highlights: ["test"], actionableTakeways: ["test"])
+                        // add reading list
+                        print("Add reading list pressed")
+                        print(newReadingList)
+                        
+                        
+                        showReadingForm.toggle()
+                        readingListManager.addReadingList(data: newReadingList)
+                    } label: {
+                        Text("Add")
+                        .font(.title3.bold())
                     }
+                    //                    NavigationLink(destination: ReadingForm()) {
+                    //                        Text("Add")
+                    //                            .font(.title3.bold())
+                    //                    }
+                    //
+                    //
                 }
             }
-            
         }
-        //            .frame(width: metric.size.width, height: metric.size.height) .background(Color.gray)
+        .sheet(isPresented: $showReadingForm) {
+            ReadingForm()
+        }
     }
 }
 
 
-struct BookCard: View {
-    let bookTitle: String
-    
-    var body: some View {
-        HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(bookTitle)
-                    .font(.title3)
-                
-                Spacer()
-                
-                Text("James Clear")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                
-                Spacer()
-                
-                HStack(spacing: 5){
-                    TagView(tagText: "Self Improvement", tagColor: Color.purple)
-                    TagView(tagText: "+10", tagColor: Color.secondary)
-                    Spacer()
-                }
-                
-                Spacer()
-                Text("Insight 💡")
-                    .font(.subheadline)
-                
-                
-                Spacer()
-                // this is insight preview
-                Text("\"Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan\"")
-                    .font(.body.italic())
-                    .lineLimit(2)
-                
-            }
-            
-            VStack {
-                Image("atomic_habit")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 70)
-                
-                Spacer()
-                
-                Button {
-                    // go to detail view
-                    
-                    
-                } label: {
-                    Text("See all")
-                        .font(.footnote)
-                }
-            }
-            .frame(width: UIScreen.main.bounds.width * 0.2)
-        }
-    }
-}
+
+
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
@@ -135,40 +88,28 @@ struct Dashboard_Previews: PreviewProvider {
     }
 }
 
-struct ExtractedView: View {
-    var body: some View {
-        HStack {
-            Image("average-dev")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 70)
-                .cornerRadius(4)
-            VStack (alignment: .leading){
-                Text("I'm an average developer 💡")
-                    .fontWeight(.semibold)
-                    .font(.body)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                
-                Text("January 1, 2022")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                
-            }
-        }
-    }
-}
+//struct ExtractedView: View {
+//    var body: some View {
+//        HStack {
+//            Image("average-dev")
+//                .resizable()
+//                .scaledToFit()
+//                .frame(height: 70)
+//                .cornerRadius(4)
+//            VStack (alignment: .leading){
+//                Text("I'm an average developer 💡")
+//                    .fontWeight(.semibold)
+//                    .font(.body)
+//                    .lineLimit(2)
+//                    .minimumScaleFactor(0.5)
+//                
+//                Text("January 1, 2022")
+//                    .font(.subheadline)
+//                    .foregroundColor(.secondary)
+//                
+//            }
+//        }
+//    }
+//}
 
 
-struct TagView: View {
-    let tagText: String
-    let tagColor: Color
-    
-    var body: some View {
-        Text(tagText)
-            .foregroundColor(.white)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
-            .background(Capsule().fill(tagColor))
-    }
-}

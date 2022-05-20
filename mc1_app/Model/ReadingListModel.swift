@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ReadingList: Identifiable{
+struct ReadingListModel: Identifiable{
     var id = UUID()
     
     var title: String
