@@ -8,10 +8,39 @@
 import SwiftUI
 
 struct ReadingDetail: View {
+    @Environment(\.colorScheme) var colorScheme
     
+//    @Binding var readingList: ReadingList
     
     var body: some View {
-        Text("Reading detail view")
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
+                Text("Atomic Habits")
+                    .font(.title2)
+                    .padding(.top, 10)
+                
+                
+                Text("James Clear")
+                    .font(.subheadline)
+                
+                HStack {
+                    TagView(tagText: "Self Improvement", tagColor: .purple)
+                    TagView(tagText: "Religion", tagColor: .orange)
+                    TagView(tagText: "Filsafat", tagColor: .blue)
+                }
+            }
+            .frame(width: UIScreen.main.bounds.width)
+            .padding(.bottom, 26)
+            .clipShape(Rectangle())
+            
+            .background(colorScheme == .light ? .white : .black)
+            .cornerRadius(14)
+            .shadow(color: .gray, radius: 1, x: 1, y: 2)
+            
+            Spacer()
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 

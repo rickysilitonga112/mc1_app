@@ -8,8 +8,8 @@
 import Foundation
 
 
-struct ReadingList{
-//    var id: ObjectIdentifier
+struct ReadingList: Identifiable{
+    var id = UUID()
     
     var title: String
     // image

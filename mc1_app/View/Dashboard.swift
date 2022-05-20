@@ -9,10 +9,10 @@ import SwiftUI
 
 struct Dashboard: View {
     @State private var searchQuery = ""
-    
-    @State var readingList: [ReadingList] = [
+
+    @State var readingLists: [ReadingList] = [
         ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
-        ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
+        ReadingList(title: "Sapiens", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
         ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
         ReadingList(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""])
     ]
@@ -27,9 +27,9 @@ struct Dashboard: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(0..<10) { card in
+                    ForEach(readingLists) { readingList in
                         Section {
-                            BookCard()
+                            BookCard(bookTitle: readingList.title)
                                 .padding(.vertical, 16)
                         }
                         .frame(height: 200)
@@ -72,10 +72,12 @@ struct Dashboard: View {
 
 
 struct BookCard: View {
+    let bookTitle: String
+    
     var body: some View {
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Atomic Habit")
+                Text(bookTitle)
                     .font(.title3)
                 
                 Spacer()
@@ -115,12 +117,14 @@ struct BookCard: View {
                 
                 Button {
                     // go to detail view
-                    print("Go to detail view")
+                    
+                    
                 } label: {
                     Text("See all")
                         .font(.footnote)
                 }
-            } .frame(width: UIScreen.main.bounds.width * 0.2)
+            }
+            .frame(width: UIScreen.main.bounds.width * 0.2)
         }
     }
 }
@@ -154,6 +158,7 @@ struct ExtractedView: View {
         }
     }
 }
+
 
 struct TagView: View {
     let tagText: String

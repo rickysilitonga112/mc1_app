@@ -15,6 +15,7 @@
 		56345E512833CE4A00412BFA /* ReadingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56345E502833CE4A00412BFA /* ReadingDetail.swift */; };
 		56345E532833CE6100412BFA /* ReadingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56345E522833CE6100412BFA /* ReadingList.swift */; };
 		56345E562833CE7E00412BFA /* ReadingListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56345E552833CE7E00412BFA /* ReadingListManager.swift */; };
+		56E5792C2836B6FD00F9A17E /* ReadingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E5792B2836B6FD00F9A17E /* ReadingForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		56345E502833CE4A00412BFA /* ReadingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDetail.swift; sourceTree = "<group>"; };
 		56345E522833CE6100412BFA /* ReadingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingList.swift; sourceTree = "<group>"; };
 		56345E552833CE7E00412BFA /* ReadingListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListManager.swift; sourceTree = "<group>"; };
+		56E5792B2836B6FD00F9A17E /* ReadingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				56345E4D2833CDEA00412BFA /* Dashboard.swift */,
 				56345E502833CE4A00412BFA /* ReadingDetail.swift */,
+				56E5792B2836B6FD00F9A17E /* ReadingForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				56345E422833CDA800412BFA /* ContentView.swift in Sources */,
 				56345E4E2833CDEA00412BFA /* Dashboard.swift in Sources */,
 				56345E562833CE7E00412BFA /* ReadingListManager.swift in Sources */,
+				56E5792C2836B6FD00F9A17E /* ReadingForm.swift in Sources */,
 				56345E402833CDA800412BFA /* mc1_appApp.swift in Sources */,
 				56345E512833CE4A00412BFA /* ReadingDetail.swift in Sources */,
 				56345E532833CE6100412BFA /* ReadingList.swift in Sources */,
