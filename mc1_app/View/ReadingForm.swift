@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ReadingForm: View {
-//    @Binding var showReadingForm: Bool
+    @Binding var showReadingForm: Bool
     
     @State var bookTitle: String = ""
     @State var bookAuthor: String = ""
     
-    init() {
-        UITableView.appearance().sectionFooterHeight = 0
+    
+    var formIsDone: Bool {
+        if bookTitle != "" && bookAuthor != "" {
+            return true
+        } else {
+            return false
+        }
+        
     }
+//    init() {
+//        UITableView.appearance().sectionFooterHeight = 0
+//    }
     
     var body: some View {
         NavigationView {
@@ -51,16 +60,27 @@ struct ReadingForm: View {
             
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        print("cancel pressed")
+                    Button {
+                        // cancel button
+                        showReadingForm.toggle()
+                        
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.red)
                     }
                 }
                 
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         // Done button
+                        if formIsDone {
+                            print("baru bisa done setelah title dan author di klik")
+                            showReadingForm.toggle()
+                        }
+                        
                     } label: {
                         Text("Done")
+                            .foregroundColor(formIsDone ? .blue : .secondary)
                     }
                 }
             }
@@ -71,8 +91,8 @@ struct ReadingForm: View {
 }
 
 struct ReadingForm_Previews: PreviewProvider {
-    
+    @State static var value: Bool = false
     static var previews: some View {
-        ReadingForm()
+        ReadingForm(showReadingForm: $value)
     }
 }

@@ -12,8 +12,8 @@ struct ReadingListManager {
     
     // array of Reading model
     var readingLists: [ReadingListModel] = [
-        ReadingListModel(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
-        ReadingListModel(title: "Sapiens", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan", highlights: [""], actionableTakeways: [""]),
+        ReadingListModel(title: "Atomic Habit", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan"),
+        ReadingListModel(title: "Sapiens", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan"),
     ]
     
     
@@ -25,6 +25,8 @@ struct ReadingListManager {
     
     func deleteReadingList(index: Int) {
         // MARK: delete reading list data based on index
+        
+        
     }
     
     

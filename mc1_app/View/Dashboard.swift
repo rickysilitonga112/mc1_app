@@ -11,6 +11,8 @@ struct Dashboard: View {
     @State private var searchQuery = ""
     
     @State var readingListManager = ReadingListManager()
+   
+    // reading form modal
     @State var showReadingForm: Bool = false
     
     
@@ -45,12 +47,14 @@ struct Dashboard: View {
                         print("Sort item button pressed")
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22)
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
                         let newReadingList: ReadingListModel = ReadingListModel(title: "Test Only", image: "atomic_habit", purpose: "test", highlights: ["test"], actionableTakeways: ["test"])
                         // add reading list
                         print("Add reading list pressed")
@@ -61,19 +65,13 @@ struct Dashboard: View {
                         readingListManager.addReadingList(data: newReadingList)
                     } label: {
                         Text("Add")
-                        .font(.title3.bold())
+                            .font(.title3)
                     }
-                    //                    NavigationLink(destination: ReadingForm()) {
-                    //                        Text("Add")
-                    //                            .font(.title3.bold())
-                    //                    }
-                    //
-                    //
                 }
             }
         }
         .sheet(isPresented: $showReadingForm) {
-            ReadingForm()
+            ReadingForm(showReadingForm: $showReadingForm)
         }
     }
 }
