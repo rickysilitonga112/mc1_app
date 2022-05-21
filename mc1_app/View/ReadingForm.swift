@@ -12,7 +12,9 @@ struct ReadingForm: View {
     
     @State var bookTitle: String = ""
     @State var bookAuthor: String = ""
+    @State var bookTag: [String] = []
     
+    @State var addNewTag: Bool = false
     
     var formIsDone: Bool {
         if bookTitle != "" && bookAuthor != "" {
@@ -22,9 +24,8 @@ struct ReadingForm: View {
         }
         
     }
-//    init() {
-//        UITableView.appearance().sectionFooterHeight = 0
-//    }
+//    self.init(UITableView.appearance().sectionFooterHeight = 0)
+    
     
     var body: some View {
         NavigationView {
@@ -40,8 +41,22 @@ struct ReadingForm: View {
                         Text("Category")
                             .font(.title3)
                         HStack {
-                            TagView(tagText: "Financial", tagColor: .secondary)
-                            TagView(tagText: "Self-Improvement", tagColor: .secondary)
+                            TagView(tagText: "Financial", tagColor: .secondary.opacity(0.6))
+                            NavigationLink(destination: AddNewCategory()) {
+                                Button {
+                                    // add new tag
+                                    
+                                    print("Add new tag")
+                                } label: {
+                                    HStack(spacing: 0) {
+                                        Image(systemName: "plus")
+                                        Text("New Category")
+                                            .foregroundColor(.blue)
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 6)
+                                    } .padding(.horizontal, 8)
+                                } .background(Capsule().fill(.secondary).opacity(0.6))
+                            }
                             
                         }
                     } .padding(.vertical)
@@ -56,8 +71,8 @@ struct ReadingForm: View {
                             .font(.body)
                     }
                 }
-            }
-            
+                
+            } .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
@@ -84,7 +99,8 @@ struct ReadingForm: View {
                     }
                 }
             }
-            
+            .navigationTitle("New List")
+            .navigationBarTitleDisplayMode(.inline)
         
         }
     }
