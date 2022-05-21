@@ -20,6 +20,7 @@
 		56C59DE3283812A6007127A2 /* AddNewCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C59DE2283812A6007127A2 /* AddNewCategory.swift */; };
 		56E5792C2836B6FD00F9A17E /* ReadingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E5792B2836B6FD00F9A17E /* ReadingForm.swift */; };
 		56E9CA4728392B4F0035F0B8 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9CA4628392B4F0035F0B8 /* CategoryModel.swift */; };
+		56E9CA4928393EB20035F0B8 /* BookTagPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9CA4828393EB20035F0B8 /* BookTagPlacement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		56C59DE2283812A6007127A2 /* AddNewCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategory.swift; sourceTree = "<group>"; };
 		56E5792B2836B6FD00F9A17E /* ReadingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingForm.swift; sourceTree = "<group>"; };
 		56E9CA4628392B4F0035F0B8 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		56E9CA4828393EB20035F0B8 /* BookTagPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTagPlacement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				5619B37A283772690002C85D /* TagView.swift */,
 				5619B37C283772C40002C85D /* BookCardView.swift */,
 				56C59DE2283812A6007127A2 /* AddNewCategory.swift */,
+				56E9CA4828393EB20035F0B8 /* BookTagPlacement.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				56345E562833CE7E00412BFA /* ReadingListManager.swift in Sources */,
 				56E5792C2836B6FD00F9A17E /* ReadingForm.swift in Sources */,
 				56345E402833CDA800412BFA /* mc1_appApp.swift in Sources */,
+				56E9CA4928393EB20035F0B8 /* BookTagPlacement.swift in Sources */,
 				56C59DE3283812A6007127A2 /* AddNewCategory.swift in Sources */,
 				56345E512833CE4A00412BFA /* ReadingDetail.swift in Sources */,
 				56E9CA4728392B4F0035F0B8 /* CategoryModel.swift in Sources */,

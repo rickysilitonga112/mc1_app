@@ -19,7 +19,9 @@ struct Dashboard: View {
     // reading form
     @State var bookTitle: String = ""
     @State var bookAuthor: String = ""
-    @State var bookCategory: String = ""
+    @State var bookCategory: [String] = [""]
+    
+    let screenWidth = UIScreen.main.bounds.width
     
     
     init() {
@@ -29,21 +31,55 @@ struct Dashboard: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    ForEach(readingListManager.readingLists) { readingList in
-                        Section {
-                            BookCardView(bookTitle: readingList.title, bookAuthor: readingList.author)
-                                .padding(.vertical, 16)
-                        }
-                        .frame(height: 200)
-                        .overlay(
-                            NavigationLink(destination: ReadingDetail(), label: {
-                                EmptyView()
-                            })
-                        )
+                if readingListManager.readingLists.count == 0 {
+                    VStack(alignment: .center) {
+                        Spacer()
+                            .frame(height: 100)
+                        
+                        Image("dashboard_image")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 255)
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        Text("\"they say Books can take you around the world, all you need to do Just Add it\"")
+                            .font(.subheadline)
+                            .padding(.horizontal, 30)
+                            .multilineTextAlignment(.center)
+                        
+                        Spacer()
+                        
+                        //                    Button {
+                        //                        // add reading list
+                        //                        showReadingForm = true
+                        //
+                        //                    } label: {
+                        //                        Text("Add Reading List")
+                        //                            .padding(.horizontal, 20)
+                        //                            .padding(.vertical, 12)
+                        //                            .foregroundColor(.white)
+                        //                            .background(Capsule())
+                        //                    }
                     }
+                } else {
+                    List {
+                        ForEach(readingListManager.readingLists) { readingList in
+                            Section {
+                                BookCardView(bookTitle: readingList.title, bookAuthor: readingList.author)
+                                    .padding(.vertical, 16)
+                            }
+                            .frame(height: 200)
+                            .overlay(
+                                NavigationLink(destination: ReadingDetail(), label: {
+                                    EmptyView()
+                                })
+                            )
+                        }
+                    }
+                    .listStyle(InsetGroupedListStyle())
                 }
-                .listStyle(InsetGroupedListStyle())
             }
             .navigationTitle("Reading List")
             .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .always))

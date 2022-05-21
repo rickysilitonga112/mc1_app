@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct AddNewCategory: View {
+    // data from new list page
+    @Binding var showCategoryForm: Bool
+    @Binding var arrayCategory: [String]
+    @Binding var arrayCategoryColor: [Color]
+    
     @State var newCategory: String = ""
     @State var newTagColor: Color = Color.orange
-    @State var showColorPicker: Bool = false
-    @State var isColorPicked: Bool = false
-    
     
     var body: some View {
         NavigationView {
@@ -41,10 +43,12 @@ struct AddNewCategory: View {
                     ToolbarItem(placement: .cancellationAction) {
                         Button {
                             // cancel button
+                            showCategoryForm = false
                             
                         } label: {
                             Text("Cancel")
                                 .foregroundColor(.red)
+                            
                         }
                     }
                     
@@ -53,6 +57,10 @@ struct AddNewCategory: View {
                             // Done button
                             print(newCategory)
                             print("\(newTagColor)")
+                            arrayCategory.append(newCategory)
+                            arrayCategoryColor.append(newTagColor)
+                            
+                            showCategoryForm = false
                             
                         } label: {
                             Text("Done")
@@ -68,11 +76,13 @@ struct AddNewCategory: View {
     }
 }
 
-struct AddNewTag_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNewCategory()
-    }
-}
+//struct AddNewTag_Previews: PreviewProvider {
+//
+//
+//    static var previews: some View {
+//        AddNewCategory()
+//    }
+//}
 
 
 extension View {

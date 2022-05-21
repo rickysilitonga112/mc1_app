@@ -10,11 +10,17 @@ import SwiftUI
 struct ReadingForm: View {
     @Binding var showReadingForm: Bool
     @Binding var readingListManager: ReadingListManager
+    
+    // data
     @Binding var bookTitle: String
     @Binding var bookAuthor: String
-    @Binding var bookCategory: String
+    @Binding var bookCategory: [String]
+    
+    @State var exampleTag:[String] = ["Self-improvement", "Leadership", "Investment"]
+    @State var exampleColor: [Color] = [.red, .green, .blue]
     
     @State var addNewTag: Bool = false
+    @State var showCategoryForm: Bool = false
     
     var formIsDone: Bool {
         if bookTitle != "" && bookAuthor != "" {
@@ -42,29 +48,31 @@ struct ReadingForm: View {
                     VStack(alignment: .leading) {
                         Text("Category")
                             .font(.title3)
-                        HStack {
-                            TagView(tagText: "Financial", tagColor: .secondary.opacity(0.6))
-                            NavigationLink(destination: AddNewCategory()) {
-                                Button {
-                                    // add new tag
-                                    
-                                    print("Add new tag")
-                                } label: {
-                                    HStack(spacing: 0) {
-                                        Image(systemName: "plus")
-                                        Text("New Category")
-                                            .foregroundColor(.blue)
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 6)
-                                    } .padding(.horizontal, 8)
-                                } .background(Capsule().fill(.secondary).opacity(0.6))
-                            }
+                        VStack(alignment: .leading, spacing: 10) {
+                                
+                            // create tag view here
+                            TagViewPlacement(items: exampleTag, color: exampleColor)
+                            
+                            Button {
+                                // add new tag
+                                showCategoryForm = true
+                                print("Add new tag")
+                            } label: {
+                                HStack(spacing: 0) {
+                                    Image(systemName: "plus")
+                                    Text("New Category")
+                                        .foregroundColor(.blue)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 6)
+                                } .padding(.horizontal, 8)
+                            } .background(Capsule().fill(.secondary).opacity(0.6))
+                            
                             
                         }
                     } .padding(.vertical)
                 }
                 
-                
+                // add photo section
                 Section {
                     Button {
                         // add photo
@@ -110,13 +118,22 @@ struct ReadingForm: View {
             }
             .navigationTitle("New List")
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $showCategoryForm) {
+                AddNewCategory(showCategoryForm: $showCategoryForm, arrayCategory: $exampleTag, arrayCategoryColor: $exampleColor)
+            }
+            
         }
     }
 }
 
 //struct ReadingForm_Previews: PreviewProvider {
-//    @State static var value: Bool = false
+//    @State var showReadingForm: Bool = true
+//    @State var readingListManager: ReadingListManager = ReadingListManager(readingLists: [ReadingListModel(title: "Test", author: "Test")])
+//    @State var bookTitle: String = ""
+//    @State var bookAuthor: String = ""
+//    @State var bookCategory: String = ""
+//
 //    static var previews: some View {
-//        ReadingForm(showReadingForm: $value)
+//        ReadingForm(showReadingForm: $showReadingForm, readingListManager: <#T##Binding<ReadingListManager>#>, bookTitle: <#T##Binding<String>#>, bookAuthor: <#T##Binding<String>#>, bookCategory: <#T##Binding<String>#>)
 //    }
 //}
