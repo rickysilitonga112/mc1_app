@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ReadingForm: View {
     @Binding var showReadingForm: Bool
-    
-    @State var bookTitle: String = ""
-    @State var bookAuthor: String = ""
-    @State var bookTag: [String] = []
+    @Binding var readingListManager: ReadingListManager
+    @Binding var bookTitle: String
+    @Binding var bookAuthor: String
+    @Binding var bookCategory: String
     
     @State var addNewTag: Bool = false
     
@@ -32,7 +32,9 @@ struct ReadingForm: View {
             List {
                 Section {
                     TextField("Title..", text: $bookTitle)
+                        .disableAutocorrection(true)
                     TextField("Author", text: $bookAuthor)
+                        .disableAutocorrection(true)
                 }
                 
                 // category
@@ -72,7 +74,8 @@ struct ReadingForm: View {
                     }
                 }
                 
-            } .listStyle(InsetGroupedListStyle())
+            }
+            .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
@@ -90,6 +93,12 @@ struct ReadingForm: View {
                         // Done button
                         if formIsDone {
                             print("baru bisa done setelah title dan author di klik")
+                            
+                            let newReadingList: ReadingListModel = ReadingListModel(title: bookTitle, author: bookAuthor)
+                            
+                            readingListManager.readingLists.append(newReadingList)
+                            
+                            
                             showReadingForm.toggle()
                         }
                         
@@ -101,14 +110,13 @@ struct ReadingForm: View {
             }
             .navigationTitle("New List")
             .navigationBarTitleDisplayMode(.inline)
-        
         }
     }
 }
 
-struct ReadingForm_Previews: PreviewProvider {
-    @State static var value: Bool = false
-    static var previews: some View {
-        ReadingForm(showReadingForm: $value)
-    }
-}
+//struct ReadingForm_Previews: PreviewProvider {
+//    @State static var value: Bool = false
+//    static var previews: some View {
+//        ReadingForm(showReadingForm: $value)
+//    }
+//}

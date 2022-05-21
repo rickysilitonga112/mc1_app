@@ -11,6 +11,7 @@ import SwiftUI
 
 struct BookCardView: View {
     let bookTitle: String
+    let bookAuthor: String
     
     var body: some View {
         HStack(spacing: 0) {
@@ -20,7 +21,7 @@ struct BookCardView: View {
                 
                 Spacer()
                 
-                Text("James Clear")
+                Text(bookAuthor)
                     .font(.footnote)
                     .foregroundColor(.secondary)
                 

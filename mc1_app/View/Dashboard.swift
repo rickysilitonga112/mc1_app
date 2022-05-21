@@ -16,6 +16,12 @@ struct Dashboard: View {
     @State var showReadingForm: Bool = false
     
     
+    // reading form
+    @State var bookTitle: String = ""
+    @State var bookAuthor: String = ""
+    @State var bookCategory: String = ""
+    
+    
     init() {
         UITableView.appearance().sectionFooterHeight = 0
     }
@@ -26,7 +32,7 @@ struct Dashboard: View {
                 List {
                     ForEach(readingListManager.readingLists) { readingList in
                         Section {
-                            BookCardView(bookTitle: readingList.title)
+                            BookCardView(bookTitle: readingList.title, bookAuthor: readingList.author)
                                 .padding(.vertical, 16)
                         }
                         .frame(height: 200)
@@ -55,14 +61,8 @@ struct Dashboard: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        let newReadingList: ReadingListModel = ReadingListModel(title: "Test Only", image: "atomic_habit", purpose: "test", highlights: ["test"], actionableTakeways: ["test"])
-                        // add reading list
-                        print("Add reading list pressed")
-                        print(newReadingList)
-                        
-                        
+                        // ketika di klik
                         showReadingForm.toggle()
-                        readingListManager.addReadingList(data: newReadingList)
                     } label: {
                         Text("Add")
                             .font(.title3)
@@ -71,14 +71,10 @@ struct Dashboard: View {
             }
         }
         .sheet(isPresented: $showReadingForm) {
-            ReadingForm(showReadingForm: $showReadingForm)
+            ReadingForm(showReadingForm: $showReadingForm, readingListManager: $readingListManager, bookTitle: $bookTitle, bookAuthor: $bookAuthor, bookCategory: $bookCategory)
         }
     }
 }
-
-
-
-
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
