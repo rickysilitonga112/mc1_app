@@ -102,7 +102,7 @@ struct ReadingForm: View {
                         if formIsDone {
                             print("baru bisa done setelah title dan author di klik")
                             
-                            let newReadingList: ReadingListModel = ReadingListModel(title: bookTitle, author: bookAuthor)
+                            let newReadingList: ReadingListModel = ReadingListModel(title: bookTitle, author: bookAuthor, category: exampleTag, categoryColor: exampleColor)
                             
                             readingListManager.readingLists.append(newReadingList)
                             

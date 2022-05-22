@@ -11,10 +11,7 @@ import Foundation
 struct ReadingListManager {
     
     // array of Reading model
-    var readingLists: [ReadingListModel] = [
-        ReadingListModel(title: "Atomic Habit", author: "James Clear", image: "atomic_habit", purpose: "Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan"),
-        ReadingListModel(title: "Sapiens", author: "James Clear", image: "atomic_habit", purpose: ""),
-    ]
+    var readingLists: [ReadingListModel] = []
     
     
     mutating func addReadingList(data: ReadingListModel) {
@@ -23,8 +20,9 @@ struct ReadingListManager {
     }
     
     
-    func deleteReadingList(index: Int) {
+    mutating func deleteReadingList(index: Int) {
         // MARK: delete reading list data based on index
+        self.readingLists.remove(at: index)
     }
     
     

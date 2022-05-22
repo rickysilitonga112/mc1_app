@@ -12,6 +12,11 @@ import SwiftUI
 struct BookCardView: View {
     let bookTitle: String
     let bookAuthor: String
+    let firstTag: String
+    let firstTagColor: Color
+    let numOfTag: Int
+    let insight: String
+    
     
     var body: some View {
         HStack(spacing: 0) {
@@ -28,8 +33,9 @@ struct BookCardView: View {
                 Spacer()
                 
                 HStack(spacing: 5){
-                    TagView(tagText: "Self Improvement", tagColor: Color.purple)
-                    TagView(tagText: "+10", tagColor: Color.secondary)
+                    TagView(tagText: firstTag, tagColor: firstTagColor)
+                    TagView(tagText: "+ \(numOfTag - 1)", tagColor: Color.secondary)
+                        .opacity(numOfTag < 2 ? 0: 1)
                     Spacer()
                 }
                 
@@ -40,14 +46,14 @@ struct BookCardView: View {
                 
                 Spacer()
                 // this is insight preview
-                Text("\"Kejahatan adalah nafsu yang terdidik. Kepandaian, seringkali, adalah kelicikan\"")
+                Text("\"\(insight)\"")
                     .font(.body.italic())
                     .lineLimit(2)
                 
             }
             
             VStack {
-                Image("atomic_habt")
+                Image("atomic_habit")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 70)

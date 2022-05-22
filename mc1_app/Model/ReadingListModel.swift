@@ -6,14 +6,19 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 struct ReadingListModel: Identifiable {
     var id = UUID()
     
+    // mandatory to add reading list
     var title: String
     var author: String
-    var category: [String]?
+    var category: [String]
+    var categoryColor: [Color]
+    
+    
+    // not mandatory
     
     // image
     var image: String?

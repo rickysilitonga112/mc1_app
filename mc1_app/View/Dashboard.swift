@@ -66,8 +66,15 @@ struct Dashboard: View {
                 } else {
                     List {
                         ForEach(readingListManager.readingLists) { readingList in
+                            
+                            let title: String = readingList.title
+                            let author: String = readingList.author
+                            let firstTag: String = readingList.category[0]
+                            let firstTagColor: Color = readingList.categoryColor[0]
+                            let numOfTag: Int = readingList.category.count
+                            let insight: String = "You don't have any insight yet"
                             Section {
-                                BookCardView(bookTitle: readingList.title, bookAuthor: readingList.author)
+                                BookCardView(bookTitle: title, bookAuthor: author, firstTag: firstTag, firstTagColor: firstTagColor, numOfTag: numOfTag, insight: insight)
                                     .padding(.vertical, 16)
                             }
                             .frame(height: 200)
