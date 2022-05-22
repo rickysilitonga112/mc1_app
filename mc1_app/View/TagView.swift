@@ -51,12 +51,27 @@ struct TagViewPlacement: View {
         return groupedItems
     }
     
+    private func getColorIndex(_ rowIndex: Int, _ colIndex: Int) -> Int {
+        if rowIndex == 0 {
+            return colIndex
+        } else {
+            var jumlahIndexSebelumnya = 0
+            for index in 0..<rowIndex {
+                jumlahIndexSebelumnya = jumlahIndexSebelumnya + groupedItems[index].count
+            }
+            return jumlahIndexSebelumnya + colIndex
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(groupedItems, id: \.self) { subItems in
+                let rowIndex = groupedItems.firstIndex(of: subItems)
                 HStack() {
                     ForEach(subItems, id: \.self) { word in
-                        TagView(tagText: word, tagColor: .secondary)
+                        let colIndex = subItems.firstIndex(of: word)
+                        let colorIndex = getColorIndex(rowIndex!, colIndex!)
+                        TagView(tagText: word, tagColor: tagColor[colorIndex])
                     }
                 }
             }
