@@ -10,6 +10,12 @@ import SwiftUI
 struct ReadingDetail: View {
     @Environment(\.colorScheme) var colorScheme
     
+    // binding data from dashboard
+    @Binding var readingListManager: ReadingListManager
+    
+    let selectedListId: UUID
+    let selectedItem: ReadingListModel
+    
     @State var buttonAddPurposeTapped = false
     @State var editQuotes = false
     @State var editAT = false
@@ -21,21 +27,25 @@ struct ReadingDetail: View {
     var purposePlaceholder: String = "Add purpose"
     //    @Binding var readingList: ReadingList
     
+    var selectedIndex: Int {
+        let index = readingListManager.getIndex(id: selectedListId)
+        
+        return index
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
-                Text("Atomic Habits")
+                Text(readingListManager.getReadingListByIndex(index: selectedIndex).title)
                     .font(.title2)
                     .padding(.top, 10)
                 
                 
-                Text("James Clear")
+                Text(readingListManager.getReadingListByIndex(index: selectedIndex).author)
                     .font(.subheadline)
                 
                 HStack {
-                    TagView(tagText: "Self Improvement", tagColor: .purple)
-                    TagView(tagText: "Religion", tagColor: .orange)
-                    TagView(tagText: "Filsafat", tagColor: .blue)
+                    TagViewPlacement(items: readingListManager.getReadingListByIndex(index: selectedIndex).category, color: readingListManager.getReadingListByIndex(index: selectedIndex).categoryColor)
                 }
             }
             .frame(width: UIScreen.main.bounds.width)
@@ -313,8 +323,8 @@ struct HeaderAction : View {
     }
 }
 
-struct ReadingDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        ReadingDetail()
-    }
-}
+//struct ReadingDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReadingDetail()
+//    }
+//}

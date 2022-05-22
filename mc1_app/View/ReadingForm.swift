@@ -103,10 +103,12 @@ struct ReadingForm: View {
                             print("baru bisa done setelah title dan author di klik")
                             let newReadingList: ReadingListModel = ReadingListModel(title: bookTitle, author: bookAuthor, category: exampleTag, categoryColor: exampleColor)
                             
-                            readingListManager.readingLists.append(newReadingList)
+                            readingListManager.list.append(newReadingList)
                             showReadingForm.toggle()
                             bookTitle = ""
                             bookAuthor = ""
+                            
+                            print(newReadingList)
                         }
                         
                     } label: {

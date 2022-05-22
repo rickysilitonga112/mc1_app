@@ -31,7 +31,7 @@ struct Dashboard: View {
     var body: some View {
         NavigationView {
             VStack {
-                if readingListManager.readingLists.count == 0 {
+                if readingListManager.list.count == 0 {
                     VStack(alignment: .center) {
                         Spacer()
                             .frame(height: 100)
@@ -65,8 +65,8 @@ struct Dashboard: View {
                     }
                 } else {
                     List {
-                        ForEach(readingListManager.readingLists) { readingList in
-                            
+                        ForEach(readingListManager.list) { readingList in
+                            let selectedId = readingList.id
                             let title: String = readingList.title
                             let author: String = readingList.author
                             let firstTag: String = readingList.category[0]
@@ -79,7 +79,7 @@ struct Dashboard: View {
                             }
                             .frame(height: 200)
                             .overlay(
-                                NavigationLink(destination: ReadingDetail(), label: {
+                                NavigationLink(destination: ReadingDetail(readingListManager: $readingListManager, selectedListId: selectedId, selectedItem: readingList), label: {
                                     EmptyView()
                                 })
                             )

@@ -6,23 +6,40 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 struct ReadingListManager {
     
     // array of Reading model
-    var readingLists: [ReadingListModel] = []
+    var list: [ReadingListModel] = []
     
     
     mutating func addReadingList(data: ReadingListModel) {
         // MARK: add reading list here
-        self.readingLists.append(data)
+        self.list.append(data)
     }
     
     
     mutating func deleteReadingList(index: Int) {
         // MARK: delete reading list data based on index
-        self.readingLists.remove(at: index)
+        self.list.remove(at: index)
+    }
+    
+    func getIndex(id: UUID) -> Int {
+        var index = 0
+        
+        for (arrIndex, _) in list.enumerated() {
+            if id == list[arrIndex].id {
+                index = arrIndex
+            }
+        }
+        
+        return index
+    }
+    
+    func getReadingListByIndex(index: Int) -> ReadingListModel {
+        return list[index]
     }
     
     
