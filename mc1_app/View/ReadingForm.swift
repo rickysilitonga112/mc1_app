@@ -16,8 +16,8 @@ struct ReadingForm: View {
     @Binding var bookAuthor: String
     @Binding var bookCategory: [String]
     
-    @State var exampleTag:[String] = ["Self-improvement", "Leadership", "Investment"]
-    @State var exampleColor: [Color] = [.red, .green, .blue]
+    @State var exampleTag:[String] = []
+    @State var exampleColor: [Color] = []
     
     @State var addNewTag: Bool = false
     @State var showCategoryForm: Bool = false
@@ -101,13 +101,12 @@ struct ReadingForm: View {
                         // Done button
                         if formIsDone {
                             print("baru bisa done setelah title dan author di klik")
-                            
                             let newReadingList: ReadingListModel = ReadingListModel(title: bookTitle, author: bookAuthor, category: exampleTag, categoryColor: exampleColor)
                             
                             readingListManager.readingLists.append(newReadingList)
-                            
-                            
                             showReadingForm.toggle()
+                            bookTitle = ""
+                            bookAuthor = ""
                         }
                         
                     } label: {
