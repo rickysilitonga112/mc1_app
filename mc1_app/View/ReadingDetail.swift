@@ -48,7 +48,7 @@ struct ReadingDetail: View {
             
             List {
                 Section(header: HeaderPurpose(purposeText: $purposeText, buttonAddPurposeTapped: $buttonAddPurposeTapped, editPurpose: $editPurpose)) {
-                    if buttonAddPurposeTapped {
+                    if editPurpose && buttonAddPurposeTapped {
                         ZStack (alignment: .leading) {
                             if purposeText.isEmpty {
                                 Text ("Add purpose")
