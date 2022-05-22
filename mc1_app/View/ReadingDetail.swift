@@ -166,6 +166,8 @@ struct ReadingDetail: View {
                         withAnimation {
                             //                            if(quoteArray.count < 3) {
                             actionArray.append("")
+                            editAT.toggle()
+                            
                             //                            }
                         }
                     }, label: {
@@ -222,6 +224,7 @@ struct HeaderPurpose : View {
                     } else {
                         Text("Edit")
                             .frame(height: 16)
+                            .font(.body)
                     }
                 }
                 .opacity(purposeText == "" ? 0 : 1)
@@ -260,6 +263,7 @@ struct HeaderQuotes : View {
                             .foregroundColor(.blue)
                     } else {
                         Text("Edit")
+                            .font(.body)
                     }
                 }
                 .opacity(quoteArray.isEmpty ? 0 : 1)

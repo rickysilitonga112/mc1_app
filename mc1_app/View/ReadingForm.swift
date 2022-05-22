@@ -23,7 +23,7 @@ struct ReadingForm: View {
     @State var showCategoryForm: Bool = false
     
     var formIsDone: Bool {
-        if bookTitle != "" && bookAuthor != "" {
+        if bookTitle != "" && bookAuthor != "" && !exampleTag.isEmpty {
             return true
         } else {
             return false
