@@ -38,7 +38,7 @@ struct ReadingListManager {
         return index
     }
     
-    func getReadingListByIndex(index: Int) -> ReadingListModel {
+    func getReadingList(by index: Int) -> ReadingListModel {
         return list[index]
     }
     

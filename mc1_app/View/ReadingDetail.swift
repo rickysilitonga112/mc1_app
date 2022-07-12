@@ -36,19 +36,19 @@ struct ReadingDetail: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
-                Text(readingListManager.getReadingListByIndex(index: selectedIndex).title)
+                Text(readingListManager.getReadingList(by: selectedIndex).title)
                     .font(.title2)
                     .padding(.top, 10)
                 
                 
-                Text(readingListManager.getReadingListByIndex(index: selectedIndex).author)
+                Text(readingListManager.getReadingList(by: selectedIndex).author)
                     .font(.subheadline)
                 
                 HStack {
-                    TagViewPlacement(items: readingListManager.getReadingListByIndex(index: selectedIndex).category, color: readingListManager.getReadingListByIndex(index: selectedIndex).categoryColor)
+                    TagViewPlacement(items: readingListManager.getReadingList(by: selectedIndex).category, color: readingListManager.getReadingList(by: selectedIndex).categoryColor)
                 }
             }
-            .frame(width: UIScreen.main.bounds.width)
+            .frame(width: UIScreen.main.bounds.width, height: 100)
             .padding(.bottom, 26)
             .clipShape(Rectangle())
             

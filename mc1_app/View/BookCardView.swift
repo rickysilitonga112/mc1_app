@@ -53,7 +53,7 @@ struct BookCardView: View {
             }
             
             VStack {
-                Image("atomic_habit")
+                Image("atomc_habit")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 70)
